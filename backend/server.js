@@ -4,20 +4,28 @@ const express = require('express')
 
 const mongoose = require('mongoose')
 
-const wourkoutRoutes = require('./routes/workouts')
+const workoutRoutes = require('./routes/workouts')
 
 //express app
 const app = express()
 
 // middleware
 app.use(express.json())
+
+
 app.use((req, res, next) =>{
     console.log(req.path, req.method)
     next()
 })
+const cors = require("cors");
 
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+  })
+);
 //routes
-app.use('/api/workouts',wourkoutRoutes)
+app.use('/api/workouts',workoutRoutes)
 
 //connect to db
 mongoose.connect(process.env.MONGO_URI)
