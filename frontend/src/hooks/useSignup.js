@@ -29,6 +29,7 @@ export const useSignup = () =>{
             //update authcontext
             dispatch({type: 'LOGIN', payload: json})
             setIsLoading(false)
+            
 
 
         }
